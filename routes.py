@@ -2,12 +2,12 @@ from pathlib import Path
 from fastapi import APIRouter,Request,Form,HTTPException
 from fastapi.responses import HTMLResponse,FileResponse
 from fastapi.templating import Jinja2Templates
-from app.schemas import PromptRequest
-from app.services.gemini_flash import generate_outline
-from app.services.gemini_pro import generate_story
-from app.services.image_generator import generate_image
-from app.services.layout_builder import build_comic_layout
-from app.services.exporters import save_pdf
+from schemas import PromptRequest
+from gemini_flash import generate_outline
+from gemini_pro import generate_story
+from image_generator import generate_image
+from layout_builder import build_comic_layout
+from exporters import save_pdf
 BASE=Path(__file__).resolve().parent.parent; templates=Jinja2Templates(directory=str(BASE/"templates"));router=APIRouter()
 def create_comic(req):
     outline=generate_outline(req);story=generate_story(req,outline)
